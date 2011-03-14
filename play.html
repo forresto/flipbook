@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sembiki Flipbook</title>
+  
+  <style type="text/css">
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <script type="text/javascript">
+    var vars = getUrlVars();
+    var timer;
+    var fps;
+    var cols;
+    var colIndex = 0;
+    var posX;
+    var rows;
+    var rowIndex = 0;
+    var posY;
+    
+    if (vars["i"]) {
+      var image = vars["i"];
+      document.body.background = vars["i"];
+      
+      cols = vars["c"] ? vars["c"] : 3;
+      var w = vars["w"] ? vars["w"] : 1920;
+      posX = w/cols;
+      
+      rows = vars["r"] ? vars["r"] : 4;
+      var h = vars["h"] ? vars["h"] : 1920;
+      posY = h/rows;
+      
+      var fps = vars["f"] ? vars["f"] : 6;
+      
+      timer = setTimeout("flip()",1000/fps);
+    }
+    
+    function flip()
+    {
+      colIndex++;
+      if (colIndex >= cols) {
+        colIndex = 0;
+        rowIndex++;
+      }
+      if (rowIndex >= rows) {
+        rowIndex = 0;
+      }
+      document.body.style.backgroundPosition = colIndex*posX + "px " + rowIndex*posY + "px";
+      timer = setTimeout("flip()",1000/fps);
+    }
+    
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+  </script>  
+</body>
+</html>
