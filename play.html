@@ -27,8 +27,8 @@
     var posY;
     
     if (vars["i"]) {
-      var image = vars["i"];
-      document.body.background = vars["i"];
+      var image = unescape(vars["i"]);
+      document.body.background = image;
       
       cols = vars["c"] ? vars["c"] : 3;
       var w = vars["w"] ? vars["w"] : 1920;
