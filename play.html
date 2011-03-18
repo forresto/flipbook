@@ -28,7 +28,7 @@
     
     if (vars["i"]) {
       var image = unescape(vars["i"]);
-      document.body.background = image;
+      document.body.style.background = "url(" + image + ") repeat 0px 0px";
       
       cols = vars["c"] ? vars["c"] : 3;
       var w = vars["w"] ? vars["w"] : 1920;
@@ -53,7 +53,7 @@
       if (rowIndex >= rows) {
         rowIndex = 0;
       }
-      document.body.style.backgroundPosition = colIndex*posX + "px " + rowIndex*posY + "px";
+      document.body.style.backgroundPosition = (colIndex * posX * -1) + "px " + (rowIndex * posY * -1) + "px";
       timer = setTimeout("flip()",1000/fps);
     }
     
