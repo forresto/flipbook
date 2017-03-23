@@ -1,1 +1,1 @@
-moved to http://forresto.github.com/flipbook
+moved to http://forresto.github.io/flipbook
